@@ -1,0 +1,24 @@
+API TEST RESULTS
+
+--- Testing Rice ---
+✅ Success!
+Recommended Fertilizer: Urea
+Purpose: High nitrogen requirement for vegetative growth and tillering
+Quantity per Acre: 53.75 kg
+Irrigation Method: Flood irrigation or Alternate Wetting and Drying (AWD)
+   -> Correctly recommended Urea for Rice
+
+--- Testing Wheat ---
+✅ Success!
+Recommended Fertilizer: DAP
+Purpose: Balanced NPK with emphasis on phosphorus for root development
+Quantity per Acre: 51.32 kg
+Irrigation Method: Furrow irrigation or Sprinkler
+   -> Correctly recommended DAP for Wheat
+
+--- Testing Potato ---
+✅ Success!
+Recommended Fertilizer: MOP
+Purpose: High potassium for tuber quality and starch content
+Quantity per Acre: 46.47 kg
+Irrigation Method: Drip or Sprinkler irrigation
