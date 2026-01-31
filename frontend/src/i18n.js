@@ -2,13 +2,35 @@
 
 export const translations = {
     en: {
-        // Header
+        // App Header
         appTitle: "🍃 Smart Fertilizer Advisor",
-        appSubtitle: "AI-Powered Agricultural Intelligence for Higher Yields",
+        appSubtitle: "Simple Advice for Better Harvests",
+
+        // Home Page
+        homeDescription: "We are 3rd-year BTech students at KIETW. We are part of the Artificial Intelligence Career for Women program, a CSR initiative by Microsoft and SAP, implemented by the Edunet Foundation.",
+        teamMembersTitle: "Team Members",
+        teamMember1: "Jayasree Yellapu",
+        teamMember2: "Veerakumari Achanta",
+        teamMember3: "Shireesha Koppadi",
+        instituteName: "Kakinada Institute of Engineering and Technology for Women",
+        mentorDetailsTitle: "Mentor Details",
+        mentorName: "Abdul Aziz Md",
+        mentorRole: "Master Trainer",
+        mentorOrg: "Microsoft and SAP, Edunet Foundation",
+        clickToStart: "Click anywhere to start",
+
+        // Farmer Details Page
+        farmerDetailsTitle: "Farmer Details",
+        farmerNameLabel: "Name",
+        farmerLocationLabel: "Village / District",
+        enterNamePlaceholder: "Enter your name",
+        enterLocationPlaceholder: "e.g. Rampachodavaram",
+        nextStepButton: "Next",
+        fillAllFieldsError: "Please enter your name and location.",
 
         // Input Form
         formTitle: "🌱 Soil & Crop Details",
-        formSubtitle: "Enter the soil parameters to get an AI recommendation.",
+        formSubtitle: "Enter your soil details to get advice.",
 
         // Soil Type
         soilTypeLabel: "Soil Type",
@@ -21,12 +43,12 @@ export const translations = {
         },
 
         // Inputs
-        nitrogenLabel: "Nitrogen (N) [ppm]",
-        phosphorusLabel: "Phosphorus (P) [ppm]",
-        potassiumLabel: "Potassium (K) [ppm]",
-        phLabel: "Soil pH",
-        moistureLabel: "Soil Moisture (%)",
-        cropLabel: "Crop Name",
+        nitrogenLabel: "Nitrogen (N)",
+        phosphorusLabel: "Phosphorus (P)",
+        potassiumLabel: "Potassium (K)",
+        phLabel: "pH Level",
+        moistureLabel: "Moisture (%)",
+        cropLabel: "Crop",
         seasonLabel: "Season",
         landAreaLabel: "Land Area (Acres)",
 
@@ -39,38 +61,46 @@ export const translations = {
         landAreaPlaceholder: "e.g. 5",
 
         // Buttons
-        submitButton: "Get Fertilizer Plan",
-        analyzing: "Analyzing...",
-        backButton: "← Check Another Land",
+        submitButton: "Get Advice",
+        analyzing: "Checking...",
+        backButton: "← Check Another",
+        downloadReport: "Download Report",
 
         // Results
-        resultsTitle: "📝 Recommendation Report",
-        resultsSubtitle: "AI Analysis based on your soil profile",
+        resultsTitle: "📝 Your Farm Report",
+        resultsSubtitle: "Based on your soil details",
         smartSuggestion: "💡 Smart Suggestion",
         recommendedFertilizer: "Recommended Fertilizer",
-        optimalChoice: "Optimal choice for",
-        applicationQuantity: "Application Quantity",
+        optimalChoice: "Best choice for",
+        applicationQuantity: "Quantity Needed",
         perAcre: "kg/acre",
         totalQuantity: "Total Quantity",
         applyEvenly: "Apply evenly across the field",
-        successProbability: "Success Probability",
-        predictedYield: "Predicted yield confidence",
-        detailedInsights: "🔍 Detailed Insights",
-        healthyRanges: "✅ All soil parameters appear to be within healthy ranges!",
+        successProbability: "Success Chance",
+        predictedYield: "Confidence in good yield",
+        detailedInsights: "🔍 Key Insights",
+        healthyRanges: "✅ Your soil looks good!",
+
+        // Irrigation
+        irrigationGuidance: "Watering Advice",
+        irrigationMethod: "Method",
+        criticalTiming: "When to Water",
+        frequency: "How Often",
+        waterManagementTips: "Tips",
 
         // Chatbot
-        chatbotTitle: "🌱 Farming Assistant",
-        chatbotWelcome: "Hello! I am your AI Farming Assistant. Ask me anything about fertilizers, crops, or soil health.",
-        chatPlaceholder: "Type a message...",
-        chatError: "Sorry, I'm having trouble connecting to the server.",
+        chatbotTitle: "🌱 Farm Help",
+        chatbotWelcome: "Hello! Ask me about fertilizers, crops, or water.",
+        chatPlaceholder: "Ask a question...",
+        chatError: "Connection error. Please try again.",
 
         // Greetings
-        greetingHi: "Hello! How can I help you with farming today?",
-        greetingHello: "Hi there! Ask me about fertilizers, crops, or soil health.",
+        greetingHi: "Hello! How can I help you?",
+        greetingHello: "Hi! Ask me about your farm.",
         greetingThanks: "You're welcome! Happy farming! 🌾",
 
         // Footer
-        footerText: "© 2026 Smart Fertilizer System. Built with TF.Keras & React.",
+        footerText: "© 2026 Smart Fertilizer System.",
 
         // Language
         language: "Language",
@@ -79,33 +109,55 @@ export const translations = {
     },
 
     te: {
-        // Header
+        // App Header
         appTitle: "🍃 స్మార్ట్ ఎరువుల సలహాదారు",
-        appSubtitle: "అధిక దిగుబడి కోసం AI-ఆధారిత వ్యవసాయ తెలివితేటలు",
+        appSubtitle: "మంచి పంట దిగుబడి కోసం సులభమైన సలహాలు",
+
+        // Home Page
+        homeDescription: "మా KIETW లో 3వ సంవత్సరం BTech విద్యార్థులం. మేము Microsoft మరియు SAP ద్వారా Edunet Foundation అమలు చేస్తున్న 'Artificial Intelligence Career for Women' ప్రోగ్రామ్లో భాగం.",
+        teamMembersTitle: "జట్టు సభ్యులు",
+        teamMember1: "జయశ్రీ యెల్లపు",
+        teamMember2: "వీరకుమారి ఆచంట",
+        teamMember3: "శిరీష కొప్పాడి",
+        instituteName: "కాకినాడ ఇన్స్టిట్యూట్ ఆఫ్ ఇంజనీరింగ్ అండ్ టెక్నాలజీ ఫర్ ఉమెన్",
+        mentorDetailsTitle: "మెంటర్ వివరాలు",
+        mentorName: "అబ్దుల్ అజీజ్ ఎండి",
+        mentorRole: "మాస్టర్ ట్రైనర్",
+        mentorOrg: "Microsoft మరియు SAP, Edunet Foundation",
+        clickToStart: "ప్రారంభించడానికి ఎక్కడైనా క్లిక్ చేయండి",
+
+        // Farmer Details Page
+        farmerDetailsTitle: "రైతు వివరాలు",
+        farmerNameLabel: "రైతు పేరు",
+        farmerLocationLabel: "గ్రామం / మండలం",
+        enterNamePlaceholder: "మీ పేరు రాయండి",
+        enterLocationPlaceholder: "ఉదా. రంపచోడవరం",
+        nextStepButton: "తరువాత",
+        fillAllFieldsError: "దయచేసి మీ పేరు మరియు ఊరు రాయండి.",
 
         // Input Form
         formTitle: "🌱 నేల & పంట వివరాలు",
-        formSubtitle: "AI సిఫార్సు పొందడానికి నేల పారామితులను నమోదు చేయండి.",
+        formSubtitle: "మీ పంట వివరాలు ఇక్కడ ఇవ్వండి.",
 
         // Soil Type
         soilTypeLabel: "నేల రకం",
         soilTypeSelect: "నేల రకాన్ని ఎంచుకోండి",
         soilTypes: {
             black: "నల్ల నేల",
-            red: "ఎరుపు నేల",
+            red: "ఎర్ర నేల",
             alluvial: "ఒండ్రు నేల",
             sandy: "ఇసుక నేల"
         },
 
         // Inputs
-        nitrogenLabel: "నత్రజని (N) [ppm]",
-        phosphorusLabel: "భాస్వరం (P) [ppm]",
-        potassiumLabel: "పొటాషియం (K) [ppm]",
-        phLabel: "నేల pH",
-        moistureLabel: "నేల తేమ (%)",
+        nitrogenLabel: "నత్రజని (N)",
+        phosphorusLabel: "భాస్వరం (P)",
+        potassiumLabel: "పొటాష్ (K)",
+        phLabel: "నేల pH (పులుపు/క్షారం)",
+        moistureLabel: "తేమ శాతం (%)",
         cropLabel: "పంట పేరు",
         seasonLabel: "కాలం",
-        landAreaLabel: "భూమి విస్తీర్ణం (ఎకరాలు)",
+        landAreaLabel: "భూమి (ఎకరాలు)",
 
         // Placeholders
         nitrogenPlaceholder: "ఉదా. 40",
@@ -116,38 +168,46 @@ export const translations = {
         landAreaPlaceholder: "ఉదా. 5",
 
         // Buttons
-        submitButton: "ఎరువుల ప్రణాళిక పొందండి",
-        analyzing: "విశ్లేషిస్తోంది...",
-        backButton: "← మరొక భూమిని తనిఖీ చేయండి",
+        submitButton: "సలహా పొందండి",
+        analyzing: "పరిశీలిస్తున్నాం...",
+        backButton: "← వెనుకకు",
+        downloadReport: "రిపోర్ట్ డౌన్‌లోడ్",
 
         // Results
-        resultsTitle: "📝 సిఫార్సు నివేదిక",
-        resultsSubtitle: "మీ నేల ప్రొఫైల్ ఆధారంగా AI విశ్లేషణ",
-        smartSuggestion: "💡 స్మార్ట్ సూచన",
-        recommendedFertilizer: "సిఫార్సు చేయబడిన ఎరువు",
-        optimalChoice: "దీనికి అనువైన ఎంపిక",
-        applicationQuantity: "దరఖాస్తు పరిమాణం",
+        resultsTitle: "📝 మీ పంట నివేదిక",
+        resultsSubtitle: "మీ నేల పరీక్ష ఆధారంగా సలహా",
+        smartSuggestion: "💡 ముఖ్యమైన సలహా",
+        recommendedFertilizer: "వాడాల్సిన ఎరువు",
+        optimalChoice: "మంచి ఎంపిక:",
+        applicationQuantity: "ఎంత వాడాలి?",
         perAcre: "కిలోలు/ఎకరం",
-        totalQuantity: "మొత్తం పరిమాణం",
-        applyEvenly: "పొలం అంతటా సమానంగా వర్తించండి",
-        successProbability: "విజయ సంభావ్యత",
-        predictedYield: "అంచనా దిగుబడి విశ్వాసం",
-        detailedInsights: "🔍 వివరణాత్మక అంతర్దృష్టులు",
-        healthyRanges: "✅ అన్ని నేల పారామితులు ఆరోగ్యకరమైన పరిధుల్లో ఉన్నట్లు కనిపిస్తోంది!",
+        totalQuantity: "మొత్తం కావాల్సిన ఎరువు",
+        applyEvenly: "పొలం అంతటా సమానంగా వేయండి",
+        successProbability: "పంట విజయం",
+        predictedYield: "మంచి దిగుబడి వచ్చే అవకాశం",
+        detailedInsights: "🔍 ముఖ్య గమనికలు",
+        healthyRanges: "✅ మీ నేల బలంగా ఉంది, కంగారు లేదు!",
+
+        // Irrigation
+        irrigationGuidance: "నీరు ఎలా పెట్టాలి?",
+        irrigationMethod: "పద్ధతి",
+        criticalTiming: "ఎప్పుడు నీరు పెట్టాలి?",
+        frequency: "ఎన్ని సార్లు?",
+        waterManagementTips: "చిట్కాలు",
 
         // Chatbot
-        chatbotTitle: "🌱 వ్యవసాయ సహాయకుడు",
-        chatbotWelcome: "నమస్కారం! నేను మీ AI వ్యవసాయ సహాయకుడిని. ఎరువులు, పంటలు లేదా నేల ఆరోగ్యం గురించి ఏదైనా అడగండి.",
-        chatPlaceholder: "సందేశం టైప్ చేయండి...",
-        chatError: "క్షమించండి, సర్వర్‌కు కనెక్ట్ చేయడంలో సమస్య ఉంది.",
+        chatbotTitle: "🌱 వ్యవసాయ సహాయం",
+        chatbotWelcome: "నమస్కారం! పంటలు, ఎరువులు లేదా నీటి గురించి నన్ను అడగండి.",
+        chatPlaceholder: "ప్రశ్న అడగండి...",
+        chatError: "క్షమించండి, కనెక్షన్ దొరకలేదు.",
 
         // Greetings
-        greetingHi: "నమస్కారం! ఈరోజు వ్యవసాయంలో నేను మీకు ఎలా సహాయం చేయగలను?",
-        greetingHello: "హాయ్! ఎరువులు, పంటలు లేదా నేల ఆరోగ్యం గురించి అడగండి.",
-        greetingThanks: "స్వాగతం! శుభ వ్యవసాయం! 🌾",
+        greetingHi: "నమస్కారం! మీకు ఎలా సహాయం చేయగలను?",
+        greetingHello: "హాయ్! మీ పంట గురించి చెప్పండి.",
+        greetingThanks: "ధన్యవాదాలు! మంచి పంట పండించండి! 🌾",
 
         // Footer
-        footerText: "© 2026 స్మార్ట్ ఎరువుల వ్యవస్థ. TF.Keras & React తో నిర్మించబడింది.",
+        footerText: "© 2026 స్మార్ట్ ఎరువుల వ్యవస్థ.",
 
         // Language
         language: "భాష",
@@ -223,8 +283,8 @@ export const seasonTranslations = {
         'Whole Year': 'Whole Year'
     },
     te: {
-        'Kharif': 'ఖరీఫ్',
-        'Rabi': 'రబీ',
+        'Kharif': 'ఖరీఫ్ (వాానాకాలం)',
+        'Rabi': 'రబీ (యాసంగి)',
         'Zaid': 'జైద్',
         'Summer': 'వేసవి',
         'Winter': 'చలికాలం',

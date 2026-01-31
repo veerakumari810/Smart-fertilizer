@@ -62,40 +62,7 @@ const InputForm = ({ onSubmit, isLoading, language, setLanguage }) => {
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <h2>{t.formTitle}</h2>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button
-            type="button"
-            onClick={() => setLanguage('en')}
-            style={{
-              padding: '0.4rem 0.8rem',
-              borderRadius: '8px',
-              border: language === 'en' ? '2px solid var(--primary)' : '2px solid #ddd',
-              background: language === 'en' ? 'var(--primary)' : 'white',
-              color: language === 'en' ? 'white' : '#333',
-              cursor: 'pointer',
-              fontWeight: '600',
-              fontSize: '0.85rem'
-            }}
-          >
-            EN
-          </button>
-          <button
-            type="button"
-            onClick={() => setLanguage('te')}
-            style={{
-              padding: '0.4rem 0.8rem',
-              borderRadius: '8px',
-              border: language === 'te' ? '2px solid var(--primary)' : '2px solid #ddd',
-              background: language === 'te' ? 'var(--primary)' : 'white',
-              color: language === 'te' ? 'white' : '#333',
-              cursor: 'pointer',
-              fontWeight: '600',
-              fontSize: '0.85rem'
-            }}
-          >
-            తెలుగు
-          </button>
-        </div>
+
       </div>
       <p style={{ marginBottom: '1.5rem', color: '#718096' }}>{t.formSubtitle}</p>
 

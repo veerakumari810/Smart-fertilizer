@@ -1,14 +1,60 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { translations } from '../i18n';
+import { Download, Droplets, Clock, Calendar, Info } from 'lucide-react';
+import axios from 'axios';
 
-const Results = ({ result, language }) => {
+const Results = ({ result, farmerData, language }) => {
     if (!result) return null;
 
     const t = translations[language];
     const perAcre = result.Fertilizer_Quantity_kg_per_acre || 0;
     const landArea = result.landArea || 1;
     const totalQuantity = (perAcre * landArea).toFixed(2);
+
+    // Helper to get bilingual content
+    const getContent = (data) => {
+        if (!data) return "";
+        if (typeof data === 'string') return data; // Fallback for old/simple strings
+        return data[language] || data['en'] || ""; // Prefer current lang, then EN
+    };
+
+    const handleDownload = async () => {
+        try {
+            const response = await axios.post('http://localhost:8000/download_report', {
+                farmer_name: farmerData?.name || "Farmer",
+                location: farmerData?.location || "Unknown",
+                ...result,
+                language: language
+            }, {
+                responseType: 'blob'
+            });
+
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `Fertilizer_Recommendation_${farmerData?.name || 'Report'}.pdf`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (error) {
+            console.error("Download failed", error);
+            alert("Failed to download report. Please try again.");
+        }
+    };
+
+    const suggestion = getContent(result.Suggestion);
+    const purpose = getContent(result.Fertilizer_Purpose);
+    const additionalInfo = getContent(result.Additional_Fertilizer_Info);
+
+    // Insights is a list of bilingual strings? No, backend sends {en: [], te: []}
+    const insightList = result.Insights ? (result.Insights[language] || result.Insights['en'] || []) : [];
+
+    // Irrigation
+    const irrigationMethod = getContent(result.Irrigation_Method);
+    const irrigationTiming = getContent(result.Irrigation_Timing);
+    const irrigationFrequency = getContent(result.Irrigation_Frequency);
+    const irrigationTips = getContent(result.Irrigation_Tips);
 
     return (
         <motion.div
@@ -22,16 +68,29 @@ const Results = ({ result, language }) => {
                 <p className="subtitle">{t.resultsSubtitle}</p>
             </div>
 
+            {/* Smart Suggestion & Download */}
             <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderLeft: '8px solid var(--primary)' }}>
-                <h3 style={{ color: 'var(--primary-dark)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>{t.smartSuggestion}</h3>
-                <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>{result.Suggestion}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div style={{ flex: 1 }}>
+                        <h3 style={{ color: 'var(--primary-dark)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>{t.smartSuggestion}</h3>
+                        <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>{suggestion}</p>
+                    </div>
+                    <button
+                        onClick={handleDownload}
+                        className="btn-primary"
+                        style={{ width: 'auto', padding: '0.8rem 1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
+                    >
+                        <Download size={20} />
+                        {t.downloadReport}
+                    </button>
+                </div>
             </div>
 
             {/* FERTILIZER RECOMMENDATION SECTION */}
             <div style={{ marginBottom: '3rem' }}>
                 <h3 style={{ color: 'var(--primary-dark)', fontSize: '1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🧪</span>
-                    {language === 'en' ? 'Recommended Fertilizer' : 'సిఫార్సు చేయబడిన ఎరువు'}
+                    {t.recommendedFertilizer}
                 </h3>
 
                 <div className="result-grid">
@@ -76,19 +135,19 @@ const Results = ({ result, language }) => {
                 </div>
 
                 {/* Fertilizer Purpose and Additional Info */}
-                {result.Fertilizer_Purpose && (
+                {purpose && (
                     <div className="glass-panel" style={{ padding: '1.5rem', marginTop: '1.5rem', borderLeft: '4px solid var(--primary)' }}>
                         <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
                             {language === 'en' ? '📋 Purpose' : '📋 ఉద్దేశ్యం'}
                         </h4>
-                        <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>{result.Fertilizer_Purpose}</p>
+                        <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>{purpose}</p>
 
-                        {result.Additional_Fertilizer_Info && (
+                        {additionalInfo && (
                             <>
                                 <h4 style={{ color: 'var(--primary-dark)', marginTop: '1rem', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
                                     {language === 'en' ? '💡 Additional Information' : '💡 అదనపు సమాచారం'}
                                 </h4>
-                                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: '#4A5568' }}>{result.Additional_Fertilizer_Info}</p>
+                                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: '#4A5568' }}>{additionalInfo}</p>
                             </>
                         )}
                     </div>
@@ -96,11 +155,11 @@ const Results = ({ result, language }) => {
             </div>
 
             {/* IRRIGATION GUIDANCE SECTION */}
-            {result.Irrigation_Method && (
+            {irrigationMethod && (
                 <div style={{ marginBottom: '3rem' }}>
                     <h3 style={{ color: '#2563EB', fontSize: '1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <span>💧</span>
-                        {language === 'en' ? 'Irrigation Guidance' : 'నీటిపారుదల మార్గదర్శకత్వం'}
+                        {t.irrigationGuidance}
                     </h3>
 
                     <div className="result-grid">
@@ -111,40 +170,48 @@ const Results = ({ result, language }) => {
                             style={{ background: 'linear-gradient(135deg, #2563EB 0%, #1E40AF 100%)', color: 'white' }}
                         >
                             <div className="stat-label" style={{ color: 'rgba(255,255,255,0.8)' }}>
-                                {language === 'en' ? 'Method' : 'పద్ధతి'}
+                                <Droplets size={16} style={{ display: 'inline', marginRight: '5px' }} /> {t.irrigationMethod}
                             </div>
                             <div style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '10px', lineHeight: '1.4' }}>
-                                {result.Irrigation_Method}
+                                {irrigationMethod}
                             </div>
                         </motion.div>
 
                         {/* Irrigation Timing Card */}
-                        <motion.div className="glass-panel stat-card" whileHover={{ scale: 1.05 }}>
-                            <div className="stat-label">
-                                {language === 'en' ? '⏰ Critical Timing' : '⏰ కీలక సమయం'}
+                        <motion.div
+                            className="glass-panel stat-card"
+                            whileHover={{ scale: 1.05 }}
+                            style={{ background: 'white', borderLeft: '4px solid #2563EB' }} // Kept white but consistent style
+                        >
+                            <div className="stat-label" style={{ color: '#2563EB' }}>
+                                <Clock size={16} style={{ display: 'inline', marginRight: '5px' }} /> {t.criticalTiming}
                             </div>
-                            <p style={{ fontSize: '0.95rem', lineHeight: '1.5', marginTop: '10px' }}>
-                                {result.Irrigation_Timing}
+                            <p style={{ fontSize: '0.95rem', lineHeight: '1.5', marginTop: '10px', color: '#333' }}>
+                                {irrigationTiming}
                             </p>
                         </motion.div>
 
                         {/* Irrigation Frequency Card */}
-                        <motion.div className="glass-panel stat-card" whileHover={{ scale: 1.05 }}>
-                            <div className="stat-label">
-                                {language === 'en' ? '📅 Frequency' : '📅 ఫ్రీక్వెన్సీ'}
+                        <motion.div
+                            className="glass-panel stat-card"
+                            whileHover={{ scale: 1.05 }}
+                            style={{ background: 'white', borderLeft: '4px solid #2563EB' }}
+                        >
+                            <div className="stat-label" style={{ color: '#2563EB' }}>
+                                <Calendar size={16} style={{ display: 'inline', marginRight: '5px' }} /> {t.frequency}
                             </div>
-                            <p style={{ fontSize: '0.95rem', lineHeight: '1.5', marginTop: '10px' }}>
-                                {result.Irrigation_Frequency}
+                            <p style={{ fontSize: '0.95rem', lineHeight: '1.5', marginTop: '10px', color: '#333' }}>
+                                {irrigationFrequency}
                             </p>
                         </motion.div>
                     </div>
 
                     {/* Irrigation Tips */}
                     <div className="glass-panel" style={{ padding: '1.5rem', marginTop: '1.5rem', borderLeft: '4px solid #2563EB', background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(30, 64, 175, 0.05) 100%)' }}>
-                        <h4 style={{ color: '#1E40AF', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
-                            {language === 'en' ? '💡 Water Management Tips' : '💡 నీటి నిర్వహణ చిట్కాలు'}
+                        <h4 style={{ color: '#1E40AF', marginBottom: '0.5rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <Info size={18} /> {t.waterManagementTips}
                         </h4>
-                        <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#1F2937' }}>{result.Irrigation_Tips}</p>
+                        <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#1F2937' }}>{irrigationTips}</p>
                     </div>
                 </div>
             )}
@@ -154,8 +221,8 @@ const Results = ({ result, language }) => {
                 <h3>{t.detailedInsights}</h3>
                 <div style={{ marginTop: '1rem' }}>
                     <ul className="insight-list">
-                        {result.Insights && result.Insights.length > 0 ? (
-                            result.Insights.map((insight, idx) => (
+                        {insightList && insightList.length > 0 ? (
+                            insightList.map((insight, idx) => (
                                 <motion.li
                                     key={idx}
                                     className="insight-item"
